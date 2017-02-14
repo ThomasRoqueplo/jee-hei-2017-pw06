@@ -1,6 +1,6 @@
 package hei.tp06.core.entity;
 
-import java.util.Date;
+import javax.persistence.Id;
 
 /**
  * Created by Thomas on 14/02/2017.
@@ -8,9 +8,11 @@ import java.util.Date;
 
 
 public class Evenement {
+
+    @Id
     private long id;
-    private Date start;
-    private Date end;
+    private long start;
+    private long end;
     private String title;
     private String color;
     private String description;
@@ -18,7 +20,7 @@ public class Evenement {
     public Evenement() {
     }
 
-    public Evenement(long id, Date start, Date end, String title, String color, String description) {
+    public Evenement(long id, long start, long end, String title, String color, String description) {
         this.id = id;
         this.start = start;
         this.end = end;
@@ -35,19 +37,19 @@ public class Evenement {
         this.id = id;
     }
 
-    public Date getStart() {
+    public long getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(long start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public long getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(long end) {
         this.end = end;
     }
 
@@ -73,5 +75,17 @@ public class Evenement {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Evenement{" +
+                "id=" + id +
+                ", start=" + start +
+                ", end=" + end +
+                ", title='" + title + '\'' +
+                ", color='" + color + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
