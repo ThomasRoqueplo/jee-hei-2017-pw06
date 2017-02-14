@@ -1,10 +1,6 @@
-package hei.tp06.core.config;
+package hei.tp06.web.config;
 
-import java.sql.SQLException;
-import java.util.Properties;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
+import com.jolbox.bonecp.BoneCPDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -12,25 +8,27 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import com.jolbox.bonecp.BoneCPDataSource;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 /**
  * Created by Thomas on 14/02/2017.
  */
 
 @Configuration
-@EnableJpaRepositories(basePackages = "hei.tp0.core.dao")
+@EnableJpaRepositories(basePackages = "hei.tp06.core.dao")
 public class DBConfig {
 
     @Bean(destroyMethod = "close")
-    public DataSource dataSource(Properties dbProperties) {
+    public DataSource dataSource() {
         BoneCPDataSource dataSource = new BoneCPDataSource();
-        dataSource.setDriverClass(dbProperties.getProperty("driverClass"));
-        dataSource.setJdbcUrl(dbProperties.getProperty("jdbcUrl"));
-        dataSource.setUsername(dbProperties.getProperty("username"));
-        dataSource.setPassword(dbProperties.getProperty("password"));
+        dataSource.setDriverClass("com.mysql.jdbc.Driver");
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/hei_tp06");
+        dataSource.setUsername("root");
+        dataSource.setPassword("");
         dataSource.setIdleConnectionTestPeriodInMinutes(60);
         dataSource.setIdleMaxAgeInMinutes(240);
         dataSource.setMaxConnectionsPerPartition(10);
@@ -64,7 +62,7 @@ public class DBConfig {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.getJpaPropertyMap().put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        factory.setPackagesToScan("hei.tp05.core.entity");
+        factory.setPackagesToScan("hei.tp06.core.entity");
         factory.setDataSource(dataSource);
         factory.afterPropertiesSet();
         return factory.getObject();

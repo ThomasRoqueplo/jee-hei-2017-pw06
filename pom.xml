@@ -8,7 +8,6 @@
   	<module>tp06-assets</module>
   	<module>tp06-web</module>
       <module>tp06-core</module>
-      <module>tp06-contract</module>
   </modules>
   
   <build>

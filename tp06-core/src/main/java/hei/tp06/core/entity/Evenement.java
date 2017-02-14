@@ -1,26 +1,36 @@
 package hei.tp06.core.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 /**
  * Created by Thomas on 14/02/2017.
  */
 
-
+@Entity
 public class Evenement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long start;
-    private long end;
+
+    private Timestamp start;
+
+    private Timestamp end;
+
     private String title;
+
     private String color;
+
     private String description;
 
     public Evenement() {
     }
 
-    public Evenement(long id, long start, long end, String title, String color, String description) {
+    public Evenement(long id, Timestamp start, Timestamp end, String title, String color, String description) {
         this.id = id;
         this.start = start;
         this.end = end;
@@ -37,19 +47,19 @@ public class Evenement {
         this.id = id;
     }
 
-    public long getStart() {
+    public Timestamp getStart() {
         return start;
     }
 
-    public void setStart(long start) {
+    public void setStart(Timestamp start) {
         this.start = start;
     }
 
-    public long getEnd() {
+    public Timestamp getEnd() {
         return end;
     }
 
-    public void setEnd(long end) {
+    public void setEnd(Timestamp end) {
         this.end = end;
     }
 

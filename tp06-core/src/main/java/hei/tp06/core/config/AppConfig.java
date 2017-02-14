@@ -14,7 +14,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@ComponentScan({ "hei.tp06.core.service" })
+@ComponentScan({"hei.tp06.core.service"})
 public class AppConfig {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);

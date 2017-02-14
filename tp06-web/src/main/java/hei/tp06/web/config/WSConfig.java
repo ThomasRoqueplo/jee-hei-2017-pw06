@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@ComponentScan(basePackages = "hei.tp06.web.controller")
+@ComponentScan(basePackages = {"hei.tp06.web.controller"})
 @ImportResource({"classpath:META-INF/cxf/cxf.xml"})
 public class WSConfig {
 
@@ -29,7 +29,7 @@ public class WSConfig {
     @Bean
     public Server jaxrsServer(JacksonJsonProvider jsonProvider){
         JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
-        List<Object> serviceBeans = new ArrayList<Object>();
+        List<Object> serviceBeans = new ArrayList<>();
         serviceBeans.addAll(controllers);
         sf.setServiceBeans(serviceBeans);
         sf.setProviders(Arrays.asList(jsonProvider));
