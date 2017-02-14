@@ -78,6 +78,7 @@ function CalendarCtrl($scope,$compile,uiCalendarConfig,EvenementsWS) {
         var eventToAdd = new EvenementsWS();
         eventToAdd.title = $scope.title;
         eventToAdd.description = $scope.description;
+        eventToAdd.color = "#"+$scope.color;
         eventToAdd.start = moment($scope.start, "DD-MM-YYYY HH:mm").unix() * 1000;
         eventToAdd.end = moment($scope.end, "DD-MM-YYYY HH:mm").unix() * 1000;
         console.log("save", eventToAdd);
@@ -89,6 +90,7 @@ function CalendarCtrl($scope,$compile,uiCalendarConfig,EvenementsWS) {
             uiCalendarConfig.calendars['myCalendar1'].fullCalendar( 'refetchEvents' )
             $scope.title = undefined;
             $scope.description = undefined;
+            $scope.color = undefined;
             $scope.start = undefined;
             $scope.end = undefined;
             console.log($scope.events);

@@ -1,4 +1,4 @@
-package hei.tp06.web.config;
+package hei.tp06.core.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by Thomas on 14/02/2017.
@@ -23,12 +24,12 @@ import java.sql.SQLException;
 public class DBConfig {
 
     @Bean(destroyMethod = "close")
-    public DataSource dataSource() {
+    public DataSource dataSource(Properties dbProperties) {
         BoneCPDataSource dataSource = new BoneCPDataSource();
-        dataSource.setDriverClass("com.mysql.jdbc.Driver");
-        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/hei_tp06");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setDriverClass(dbProperties.getProperty("driverClass"));
+        dataSource.setJdbcUrl(dbProperties.getProperty("jdbcUrl"));
+        dataSource.setUsername(dbProperties.getProperty("username"));
+        dataSource.setPassword(dbProperties.getProperty("password"));
         dataSource.setIdleConnectionTestPeriodInMinutes(60);
         dataSource.setIdleMaxAgeInMinutes(240);
         dataSource.setMaxConnectionsPerPartition(10);
